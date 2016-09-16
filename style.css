@@ -1,0 +1,148 @@
+/*CSS*/
+ul {/*Set up the main header*/
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #444; /*gray*/
+    font-size:20px;
+    width:100%;	
+    /*position:fixed;*/
+}
+li {/*Allow everything on the header to be on the same line*/
+    float: left;
+}
+li a, .dropbtn { /*Set up the text*/
+    display: inline-block;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    text-decoration: none;
+}
+li a:hover {
+    /*background-color: #306cf2; /*pink*/
+}
+/*If you're mouse hovers over For Nonprofts it highlights pink*/
+.dropbtn:hover, .dropdown:hover {
+  background-color: #247bbd; /*blue*/
+  border-radius: 10px;
+}
+li.dropdown { /*Set up the dropdown button for nonprofits*/
+    float:right;
+    border: solid 1px;
+    border-radius: 10px;
+    border-color: white;
+    margin: 12px;
+    font-size: 70%;
+}
+.dropdown-content { /*Set up the dropdown display*/
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 105px;
+    box-shadow: #ebebeb;
+}
+.dropdown-content a { /*Set up the text for the dropdown display*/
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+/*Highlight the dropdown content gray*/
+.dropdown-content a:hover {background-color: #ebebeb; /*gray*/}
+/*Have the dropdown content be displayed as a block*/
+.show {
+  display:block;
+}
+
+fieldset {
+  border:none;
+}
+
+/*Box surrounding the form on login.php */
+.box {
+  text-align: center;
+  margin: 20px auto;
+  width: 400px; 
+  height: 470px; 
+  border-radius: 8px/7px; 
+  background-color: #ebebeb; 
+  box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+  border: solid 1px #cbc9c9;
+}
+
+/*Specific Styling for inputs on all pages*/
+input[type=text],input[type=password]{ 
+  height: 39px;
+  border-radius: 0px 5px 5px 0px;
+  background-color: #fff; 
+  box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+  border: solid 1px #cbc9c9;
+  margin-left: -5px;
+  margin-top: 13px; 
+  padding-left: 10px;
+  margin-bottom:10px;
+}
+
+/*Submit button styling for each page.*/
+input[type="submit"] {
+    padding:10px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    border-radius: 5px;
+    margin-top:20px;
+    margin-bottom: 20px; 
+}
+
+/*Styling for icons used on login.php, register.php, and passrecover.php*/
+#icon {
+  display: inline-block;
+  width: 30px;
+  background-color: #247bbd; /*blue*/
+  padding: 12px 7px;
+  margin-left: 15px;
+  border-radius: 4px 0px 0px 4px;
+  color: white;
+  box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+  border: solid 0px #cbc9c9;
+}
+
+/*Box surrounding the form on register.php */
+.registerbox {
+  margin: 20px auto;
+  width:  900px;
+  height: 650px;
+  border-radius: 8px/7px;
+  background-color: #ebebeb;
+  box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+  border: solid 1px #cbc9c9;
+}
+
+/*Used on changepassword.php, register.php, passrecover.php, and login.php to shift everything to the center*/
+#shift {
+	display:block;
+	margin: 0 auto;
+	text-align: center; 
+}
+
+/*Used on register.php to allow inputs to be put in a row*/
+.rows {
+  display: inline-block;
+  padding: 5px;
+}
+
+a {
+  cursor:pointer;
+}
+
+body,
+input,
+textarea,
+select {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #4c4c4c;
+  margin:0;
+}
