@@ -16,7 +16,7 @@ Postconditions: Page transition to the landing page, registration page, or login
 <body>
 <!--HTML setup-->
 <ul>
-  <li><a class="active" href="index.php">Amazon</a></li>
+  <li><a id='homeButt' class="active" href="index.php">Amazon</a></li>
   <li class="dropdown">
     <a class="dropbtn" onclick="myFunction()">Your Account</a>
     <div class="dropdown-content" id="myDropdown">

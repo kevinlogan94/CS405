@@ -16,27 +16,10 @@ Postconditions: User is transitioned into their own personal user dashboard. Oth
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <!--REQUIRED FOR HEADER-->
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="formValidation.js"></script>
   <script>$(function(){
   $("#header").load("header.php"); });
-   /*Form Validation Function
-     Purpose: Checks to make sure the user has inputted a username and password in order to submit. 
-     Preconditions:Click the submit button.
-     Postconditions: If a username and/or password aren't inputted, an alert will be posted to the screen and the cancel the submit.
-     Return: False if the username/password aren't inputted isn't isn't inputted otherwise true.
-   */
-   function validateForm() {
-    var x = document.forms["myform"]["username"].value;
-    var y = document.forms["myform"]["password"].value;
-    if (x == null || x == "" || y == null || y == "") {
-         document.getElementById("formerror").innerHTML = "Please enter a Username and Password.";  
-         document.getElementById("formerror").style.color = "red";
-	 return false;
-    }
-    else {
-   	 document.getElementById("formerror").innerHTML = "";  
-    }
-   }
-   </script>
+  </script>
 </head>
 <body>
 
@@ -46,7 +29,7 @@ Postconditions: User is transitioned into their own personal user dashboard. Oth
 <!--Set up form for login information-->
 <div class="box">
  <h1>Login</h1>
- <form name = "myform" action="access.php" method="post" onsubmit="return validateForm()">
+ <form name = "myform" action="access.php" method="post" onsubmit="return loginValidateForm()">
   <fieldset>
   <p id="formerror"></p>
   <hr>

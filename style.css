@@ -133,6 +133,12 @@ input[type="submit"] {
   padding: 5px;
 }
 
+#homeButt {
+  position:relative;
+  top:7.5px;
+  left:5px;
+}
+
 a {
   cursor:pointer;
 }

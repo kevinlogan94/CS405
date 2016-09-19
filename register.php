@@ -16,6 +16,7 @@ Postconditions: Page transition to their new dashboard. Account information inpu
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">  -->
   <!--REQUIRED FOR HEADER-->
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="formValidation.js"></script>
   <script>$(function(){
   $("#header").load("header.php"); });
   /*
@@ -30,79 +31,7 @@ Postconditions: Page transition to their new dashboard. Account information inpu
    return false;
   return true;
   }
-   /*
-        validateForm function
-        Purpose: Allow a user to submit their information or not based on whether the information is filled 
-                        out correctly. If not they will be notified on the screen what needs to be filled out.
-        Parameters: None
-        Return:True if the submit can pass otherwise false.
-  */
-   function validateForm() {
-    
-     var inputs = ["email", "username", "password", "firstname", "lastname", "area", "phone"];
-     var ctr = 0;     
-     for (i = 0; i < inputs.length; i++) {
-	var value = document.forms["myform"][inputs[i]].value;
-	if (value == "" || value == null) {
-         	ctr++;
-		if(inputs[i] == "area") {
-                	document.getElementById("phone").innerHTML = " Input Required";
-                	document.getElementById("phone").style.color = "red";
-            	}
-            	else {
-               		document.getElementById(inputs[i]).innerHTML = " Input Required";
-               		document.getElementById(inputs[i]).style.color = "red";
-		}
-	}
-        else if(inputs[i] == "email") {
-		var atpos = value.indexOf("@");
-     		var dotpos = value.lastIndexOf(".");
-		var confemval = document.forms["myform"]["confemail"].value;
-		if(atpos<1 || dotpos<atpos+2 || dotpos+2>=value.length) {
-			ctr++;
-			document.getElementById(inputs[i]).innerHTML = " Invalid Email Address.";
-                	document.getElementById(inputs[i]).style.color = "red";
-		}
-		else if(value != confemval) {
-			ctr++;
-			document.getElementById(inputs[i]).innerHTML = " Email doesn't match.";
-			document.getElementById(inputs[i]).style.color = "red";
-		}
-		else {
-			document.getElementById(inputs[i]).innerHTML = "";
-		}
-	}
-	else if (inputs[i] == "password"){
-		var confpassval = document.forms["myform"]["confpass"].value;
-		if(value != confpassval) {
-			ctr++;
-			document.getElementById(inputs[i]).innerHTML = " Password doesn't match.";
-			document.getElementById(inputs[i]).style.color = "red";
-		}
-		else {
-			 document.getElementById(inputs[i]).innerHTML = "";
-		}
-		
-	}
-	else if(inputs[i] == "area" && value.length != 3) {
-           ctr++;
-           document.getElementById(inputs[i]).innerHTML = "Invalid 3 digit Area Code.";
-           document.getElementById(inputs[i]).style.color = "red";
-        }
-        else if(inputs[i] == "phone" && value.length != 7) {
-            ctr++;
-            document.getElementById(inputs[i]).innerHTML = "Invalid phone Number.";
-            document.getElementById(inputs[i]).style.color = "red"; 
-        }
-	else {
-		document.getElementById(inputs[i]).innerHTML = "";
-        }
-    }
-    if (ctr > 0) {
-      return false;
-        }   
-    }
-   </script>
+  </script>
 </head>
 <body>
  <!--REQUIRED FOR HEADER-->
@@ -117,7 +46,7 @@ Postconditions: Page transition to their new dashboard. Account information inpu
         unset($_SESSION['register_error_msg']);
     }
  ?>
- <form name="myform" action="processreg.php" method="post" onsubmit="return validateForm()"> 
+ <form name="myform" action="processreg.php" method="post" onsubmit="return registerValidateForm()"> 
   <hr>
     <div class="rows">
        <label id="icon"><i class="icon-user"></i></label>
