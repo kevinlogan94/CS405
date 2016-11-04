@@ -42,7 +42,7 @@ if ($result->num_rows > 0)
 	$data = $result->fetch_assoc(); 
 	$userID = $data['UserID'];
         setcookie('login', $userID, time() + (86400 * 30), "/");
-        header('location:/CS405/Account/accountinfo.php');
+        header('location:/CS405/Account/');
     }
 else // return to login page with error message
     {

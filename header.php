@@ -43,8 +43,8 @@ unset($_SESSION['alert']);
         if ($logged_in) 
 	{ 
 	  echo "<a href='/CS405/logout.php'>Logout</a>";
-	  echo "<a href='/CS405/Account/accountinfo.php'>Account Info</a>";
-	  echo "<a href='/CS405/cart.php'>Cart</a>";
+	  echo "<a href='/CS405/Account/'>Account Info</a>";
+	  echo "<a href='/CS405/Cart/'>Cart</a>";
 	}
 	else {
 	  echo "<a href='/CS405/login.php'>Login</a>"; 
