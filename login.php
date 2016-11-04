@@ -3,7 +3,7 @@ Prolog: login.php
 Purpose: Page that allows a user to log in to their created account or go to password recovery page.
 Preconditions: Input a username and password, then submit. Otherwise click I forgot my password.
 Postconditions: User is transitioned into their own personal user dashboard. Otherwise transitioned
-	to the password recovery page.
+        to the password recovery page.
 -->
 
 <!DOCTYPE html>
@@ -29,6 +29,14 @@ Postconditions: User is transitioned into their own personal user dashboard. Oth
 <!--Set up form for login information-->
 <div class="box">
  <h1>Login</h1>
+<?php 
+    // checks if there is an error message to handle. if so, it displays the message
+    session_start();
+    if (!empty($_SESSION['login_error_msg'])) {
+        echo "<div style=\"color: red; text-align: center;\">Error: ".$_SESSION['login_error_msg']."</div>";
+        unset($_SESSION['login_error_msg']);
+    }
+?>
  <form name = "myform" action="access.php" method="post" onsubmit="return loginValidateForm()">
   <fieldset>
   <p id="formerror"></p>
@@ -40,11 +48,8 @@ Postconditions: User is transitioned into their own personal user dashboard. Oth
   <input type="submit" value="Submit"><br><br>
     <!--Send user to password recovery page if they forgot password-->
     <a href="register.php">Create an account</a><br><br>
-    <a href= "passrecover.php">I forgot my password</a>
   </fieldset>
  </form>
 </div>
 </body>
 </html>
-
-

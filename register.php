@@ -34,11 +34,11 @@ Postconditions: Page transition to their new dashboard. Account information inpu
   </script>
 </head>
 <body>
- <!--REQUIRED FOR HEADER-->
+<!--REQUIRED FOR HEADER-->
  <div id="header"></div>
 <div class="registerbox">
  <h1 style="text-align: center;">Register</h1>
- <?php 
+ <?php
     // checks if there is an error message to handle. If so, display to screen
     session_start();
     if (!empty($_SESSION['register_error_msg'])) {
@@ -46,7 +46,7 @@ Postconditions: Page transition to their new dashboard. Account information inpu
         unset($_SESSION['register_error_msg']);
     }
  ?>
- <form name="myform" action="processreg.php" method="post" onsubmit="return registerValidateForm()"> 
+ <form name="myform" action="processreg.php" method="post" onsubmit="return registerValidateForm()">
   <hr>
     <div class="rows">
        <label id="icon"><i class="icon-user"></i></label>
@@ -72,7 +72,7 @@ Postconditions: Page transition to their new dashboard. Account information inpu
     </div>
     <br>
     <div class="rows">
-       <label id="icon"><i class="icon-key"></i></label>  
+       <label id="icon"><i class="icon-key"></i></label>
        <input type="password" name="password" placeholder="Password"><br>
     </div>
     <div class="rows">
@@ -83,8 +83,16 @@ Postconditions: Page transition to their new dashboard. Account information inpu
        <p  id="password"></p>
     </div>
     <br>
+    <div class="rows">
+       <label id="icon"><i class="icon-shield"></i></label>
+       <select name="class" selected="Customer">
+         <option value="Customer">Customer</option>
+	 <option value="Manager">Manager</option>
+	 <option value="Staff">Staff</option>
+       </select>
+    </div>
     <br>
-    <label id="shift">Contact</label>
+   <label id="shift">Contact</label>
     <hr>
     <div class="rows">
        <label id="icon"><i class="icon-envelope"></i></label>
