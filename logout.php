@@ -10,7 +10,5 @@ if (isset($_COOKIE['login'])) {
 // expire in the past, so that the cookie will expire immediately                                
 	setcookie('login', '', -1, "/");
 }
-session_start();
-$_SESSION['alert'] = "You have been logged out";
 header('location:login.php');
 ?>

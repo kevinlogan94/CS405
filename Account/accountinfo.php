@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script> 
     <script> 
     $(function(){
-      $("#header").load("header.php");
-      $("#footer").load("footer.php"); 
+      $("#header").load("../header.php");
+      $("#footer").load("../footer.php"); 
     });
     </script> 
     <title>CS405 Project</title>
@@ -31,7 +31,7 @@
         echo "Cookie '" . $cookie_name . "' is set!<br>";
         echo "<h1>" . "Welcome User: " . $_COOKIE[$cookie_name] . "</h1>";
 }
-	include 'databaselogin.php';
+	include '../databaselogin.php';
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
@@ -65,8 +65,8 @@
         $conn->close();
 
 	if($Class == "Manager"){
-		echo "<a href='Inventory.php'>Inventory</a>, ";
-		echo "<a href='orderhistory.php'>Order History</a><br>";
+		echo "<a href='/CS405/Account/inventory.php'>Inventory</a>, ";
+		echo "<a href='/CS405/Account/orderhistory.php'>Order History</a><br>";
 	}
 ?>
    </tbody>

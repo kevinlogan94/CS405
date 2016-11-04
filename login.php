@@ -7,6 +7,15 @@ Postconditions: User is transitioned into their own personal user dashboard. Oth
 -->
 
 <!DOCTYPE html>
+<?php
+
+$logged_in = False;
+if (isset($_COOKIE['login'])) {
+    $logged_in = True;
+}
+?>
+
+
 <html>
 <head>
   <title>Login</title>
@@ -25,7 +34,17 @@ Postconditions: User is transitioned into their own personal user dashboard. Oth
 
 <!--REQUIRED FOR HEADER-->
 <div id="header"></div>
+<?php if($logged_in): ?>
 
+<!--Log out setup-->
+<form action="logout.php" method="post">
+   <fieldset align="center">
+   You are already signed in! Would you like to log out? <br>
+   <input type="submit" value="Logout"><br><br>
+   </fieldset>
+</form>         
+
+<?php else: ?>
 <!--Set up form for login information-->
 <div class="box">
  <h1>Login</h1>
@@ -51,5 +70,6 @@ Postconditions: User is transitioned into their own personal user dashboard. Oth
   </fieldset>
  </form>
 </div>
+<?php endif; ?>
 </body>
 </html>

@@ -35,20 +35,20 @@ unset($_SESSION['alert']);
 <body>
 <!--HTML setup-->
 <ul>
-  <li><a id='homeButt' class="active" href="index.php">Web Store Project</a></li>
+  <li><a id='homeButt' class="active" href="/CS405/index.php">Web Store Project</a></li>
   <li class="dropdown">
     <a class="dropbtn" onclick="myFunction()">Your Account</a>
     <div class="dropdown-content" id="myDropdown">
       <?php
         if ($logged_in) 
 	{ 
-	  echo "<a href='logout.php'>Logout</a>";
-	  echo "<a href='accountinfo.php'>Account Info</a>";
-	  echo "<a href='cart.php'>Cart</a>";
+	  echo "<a href='/CS405/logout.php'>Logout</a>";
+	  echo "<a href='/CS405/Account/accountinfo.php'>Account Info</a>";
+	  echo "<a href='/CS405/cart.php'>Cart</a>";
 	}
 	else {
-	  echo "<a href='login.php'>Login</a>"; 
-	  echo "<a href='register.php'>Register</a>";  
+	  echo "<a href='/CS405/login.php'>Login</a>"; 
+	  echo "<a href='/CS405/register.php'>Register</a>";  
 	}
       ?>
     </div>
