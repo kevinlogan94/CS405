@@ -1,26 +1,19 @@
 <?php
+//curl -u user:password http://webstoreapi.azurewebsites.net/api/Account/userinfo
+// Get cURL resource
+$curl = curl_init();
+// Set some options - we are passing in a useragent too here
+curl_setopt_array($curl, array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL => 'http://webstoreapi.azurewebsites.net/api/Account/userinfo',
+    CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+));
+// Send the request & save response to $resp
+$resp = curl_exec($curl);
+// Close request to clear up some resources
+curl_close($curl);
 
-$url = 'http://webstoreapi.azurewebsites.net/api/Account/UserInfo';
-$data = array('key1' => 'value1', 'key2' => 'value2');
-$method = 'GET';
-
-// use key 'http' even if you send the request to https://...
-$options = array(
-    'http' => array(
-        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-        'method'  => $method,
-        'content' => http_build_query($data)
-    )
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-if ($result === FALSE) { /* Handle error */
-	echo "Na";	
-
-}
-
-var_dump($result);
-
+echo "<br>";
 ?>
 
 

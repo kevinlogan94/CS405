@@ -26,10 +26,6 @@
      </thead>
      <tbody>
      <?php
-      $response = file_get_contents('http://webstoreapi.azurewebsites.net/api/Account/UserInfo');
-      $response = json_decode($response);
-      echo $response;
-
 	include 'databaselogin.php';
 
 	// Create connection
@@ -56,18 +52,10 @@
 	}
 
         $conn->close();
-     ?>
+ 	include 'apicall.php' 
+    ?>
      </tbody>
      </table>
-     <br>
-      <form name = "myform" action="apicall.php" method="post">
-       <fieldset>
-        <input type="text" name="cli" placeholder="CLI-CALLER">
-	<input type="text" name="cld" placeholder="CALI-Receiver">
-        <input type="submit" value="Make Call" name='Make_call'>
-       </fieldset>
-      </form>
-
   </body>
 </html>
 
