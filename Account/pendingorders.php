@@ -9,21 +9,18 @@
       $("#footer").load("../footer.php"); 
     });
     </script> 
-    <title>Inventory</title>
+    <title>Pending Orders</title>
   </head>
   <body>
      <div id="header"></div>
-     <h1>Inventory</h1>
+     <h1>Ship Pending Orders</h1>
      <table>
      <thead>
-       <th>ID</th>
-       <th>Product</th>
-       <th>Category</th>
-       <th>Price</th>
-       <th>Invoice Price</th>
-       <th>Sales Price</th>
-       <th>Amount</th>
-       <th>Edit</th>
+       <th>OrderID</th>
+       <th>Status</th>
+       <th>Created</th>
+       <th>Ship</th>
+       
      </thead>
      <tbody>
      <?php
@@ -37,27 +34,26 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "select * from user;";
+        $sql = "select * from order where Status=pending;";
+	echo $sql;
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
         // output data of each row
          while($row = $result->fetch_assoc()) {
-	   echo "<tr>";
-	   echo "<td>" . $row["ProductID"] . "</td>";
-           echo "<td>" . $row["ProductName"] . "</td>";
-	   echo "<td>" . $row["Category"] . "</td>";
-           echo "<td>" . $row["Price"] . "</td>";
-	   echo "<td>" . $row["InvoicePrice"] . "</td>";
-	   echo "<td>" . $row["SalesPrice"] . "</td>";
-	   echo "<td>" . $row["Amount"] . "</td>";
-           echo "<td><form action='editInventory.php' method='post'><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Edit' /></form></td>";
-	   echo "</tr>";
-	}	
-	} else {
-           echo "0 results";
+                echo "<tr>";
+                echo "<td>" . $row["OrderID"] . "</td>";
+                echo "<td>" . $row["Status"] . "</td>";
+		echo "<td>" . $row["Created"] . "</td>";
+		echo "<td><form action='updatePendingOrder.php' method='post'><input type='hidden' name='OrderID' value=" . "1" . " /><input type='submit' value='Ship' /></form></td>";
+                echo "</tr>";
+        }
+        } else {
+           echo "There are 0 pending orders";
 	}
 
+//For testing purposes
+//	echo "<td><form action='updatePendingOrder.php' method='post'><input type='hidden' name='OrderID' value=" . "1" . " /><input type='submit' value='Ship' /></form></td>";	
         $conn->close();
      ?>
      </tbody>
@@ -65,7 +61,3 @@
      <div id="footer"></div>
   </body>
 </html>
-
-
-
-

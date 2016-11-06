@@ -9,21 +9,18 @@
       $("#footer").load("../footer.php"); 
     });
     </script> 
-    <title>Inventory</title>
+    <title>Sales Statistics</title>
   </head>
   <body>
      <div id="header"></div>
-     <h1>Inventory</h1>
+     <h1>Sales Statistics</h1>
+     <h2>Replace with sales statistics</h2>
      <table>
      <thead>
-       <th>ID</th>
-       <th>Product</th>
-       <th>Category</th>
-       <th>Price</th>
-       <th>Invoice Price</th>
-       <th>Sales Price</th>
-       <th>Amount</th>
-       <th>Edit</th>
+       <th>UserID</th>
+       <th>First Name</th>
+       <th>Last Name</th>
+       <th>Class</th>
      </thead>
      <tbody>
      <?php
@@ -44,14 +41,10 @@
         // output data of each row
          while($row = $result->fetch_assoc()) {
 	   echo "<tr>";
-	   echo "<td>" . $row["ProductID"] . "</td>";
-           echo "<td>" . $row["ProductName"] . "</td>";
-	   echo "<td>" . $row["Category"] . "</td>";
-           echo "<td>" . $row["Price"] . "</td>";
-	   echo "<td>" . $row["InvoicePrice"] . "</td>";
-	   echo "<td>" . $row["SalesPrice"] . "</td>";
-	   echo "<td>" . $row["Amount"] . "</td>";
-           echo "<td><form action='editInventory.php' method='post'><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Edit' /></form></td>";
+	   echo "<td>" . $row["UserID"] . "</td>";
+           echo "<td>" . $row["FirstName"] . "</td>";
+	   echo "<td>" . $row["LastName"] . "</td>";
+           echo "<td>" . $row["Class"] . "</td>";
 	   echo "</tr>";
 	}	
 	} else {
