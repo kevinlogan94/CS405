@@ -9,7 +9,7 @@
       $("#footer").load("../footer.php"); 
     });
     </script> 
-    <title>CS405 Project</title>
+    <title>Cart</title>
   </head>
   <body>
      <div id="header"></div>

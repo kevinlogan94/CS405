@@ -9,7 +9,7 @@
       $("#footer").load("../footer.php"); 
     });
     </script> 
-    <title>CS405 Project</title>
+    <title>Account Information</title>
   </head>
 <body>
 <div id="header"></div>
@@ -69,17 +69,18 @@
 		echo "<a href='/CS405/Account/pendingorders.php'>Pending Orders</a>, ";
 		echo "<a href='/CS405/Account/orderhistory.php'>Order History</a>, ";
 		echo "<a href='/CS405/Account/salesStatistics.php'>Sales Statistics</a>, ";
-		echo "<a href='/CS405/Account/salesPromotion.php'>Sales Promotion</a><br>";
+		echo "<a href='/CS405/Account/salesPromotion.php'>Sales Promotion</a><br><br>";
 	}
         else if($Class == "Staff"){
 		echo "<a href='/CS405/Account/inventory.php'>Inventory</a>, ";
                 echo "<a href='/CS405/Account/pendingorders.php'>Pending Orders</a>, ";
-                echo "<a href='/CS405/Account/orderhistory.php'>Order History</a><br>";
+                echo "<a href='/CS405/Account/orderhistory.php'>Order History</a><br><br>";
 	}
+	else{
+                echo "<a href='/CS405/Account/orderhistory.php'>Order History</a><br><br> ";
+        }
 ?>
    </tbody>
    </table>
-
-
 </body>
 </html>
