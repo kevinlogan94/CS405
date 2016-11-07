@@ -29,7 +29,10 @@ if ($conn->connect_error) {
 }
 
 //Get the amount of products in the order
-$sql = "select count(ProductName) from orderContainProduct, product where orderContainProduct.ProductID=product.ProductID and OrderID=" . $OrderID . ";";
+$sql = "select count(ProductName) 
+	from orderContainProduct, product 
+	where orderContainProduct.ProductID=product.ProductID 
+	and OrderID=" . $OrderID . ";";
 $result = $conn->query($sql);
 $data = $result->fetch_assoc();
 $amount = $data['count(ProductName)'];
@@ -37,9 +40,10 @@ $amount = $data['count(ProductName)'];
 
 
 //check order if the products are able to be sent.
-$sql = "select ProductName, product.ProductID 
+$sql = "select ProductName, product.ProductID, product.Amount, orderContainProduct.Amount as oAmount 
         from orderContainProduct, product 
-        where Amount > 0 and orderContainProduct.ProductID=product.ProductID and OrderID=" . $OrderID . ";";
+        where product.Amount > 0 and orderContainProduct.ProductID=product.ProductID and OrderID=" . $OrderID . "
+	group by orderContainProduct.Amount;";
 $result = $conn->query($sql);
 
 //compare what can be sent to how many are in the order.
@@ -47,19 +51,21 @@ if ($result->num_rows == $amount) {
     //Set the order status to Shipping
     $sql = "update orders set OrderStatus='Shipping'
           where OrderID=" . $OrderID . ";";
+    //echo $sql;
 
    //perform the query
     $conn->query($sql);
 
     while($row = $result->fetch_assoc()) {
       //Reduce the amount of each product
-      $sql = "update product set Amount=(Amount-1)
+      $sql = "update product set product.Amount=(product.Amount-" . $row['oAmount'] . ")
               where ProductID=" . $row["ProductID"] . ";";
+      echo $sql;
       $conn->query($sql);
     }
 
 
-    header('location:pendingorders.php');
+    //header('location:pendingorders.php');
 } else {//Otherwise print what's not listed
     $sql = "select ProductName 
         from orderContainProduct, product 

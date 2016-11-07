@@ -32,12 +32,14 @@
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
         }
-	
-	$sql = "select Price, ProductName, SalesPrice, Category, o.Amount 
-		from orderContainProduct as o, userOrder, product 
+ 
+	$sql = "select Price, ProductName, SalesPrice, o.OrderID, Category, o.Amount 
+		from orderContainProduct as o, userOrder, product, orders 
 		where o.OrderID=userOrder.OrderID 
 		and product.ProductID=o.ProductID 
-		and UserID=" . $_COOKIE['login'] . ";";
+		and orders.OrderID=o.OrderID 
+		and orders.OrderStatus='UnCheckout'
+		and UserID=" . $_COOKIE['login'] . ";";	
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
