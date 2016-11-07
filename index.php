@@ -52,7 +52,7 @@
 	}
 
         $conn->close();
- 	include 'apicall.php' 
+ //	include 'apicall.php' 
     ?>
      </tbody>
      </table>

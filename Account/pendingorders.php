@@ -34,8 +34,7 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "select * from order where Status=pending;";
-	echo $sql;
+        $sql = "select * from orders where OrderStatus='Pending';";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -43,9 +42,9 @@
          while($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row["OrderID"] . "</td>";
-                echo "<td>" . $row["Status"] . "</td>";
-		echo "<td>" . $row["Created"] . "</td>";
-		echo "<td><form action='updatePendingOrder.php' method='post'><input type='hidden' name='OrderID' value=" . "1" . " /><input type='submit' value='Ship' /></form></td>";
+                echo "<td>" . $row["OrderStatus"] . "</td>";
+		echo "<td>" . $row["OrderDate"] . "</td>";
+		echo "<td><form action='updatePendingOrder.php' method='post'><input type='hidden' name='OrderID' value=" . $row["OrderID"] . " /><input type='submit' value='Ship' /></form></td>";
                 echo "</tr>";
         }
         } else {

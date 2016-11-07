@@ -17,7 +17,8 @@
      <table>
      <thead>
        <th>Product</th>
-       <th>Class</th>
+       <th>Category</th>
+       <th>Price</th>
        <th>Amount</th>
      </thead>
      <tbody>
@@ -31,17 +32,26 @@
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
         }
-
-        $sql = "select * from order where OrderID='" . $_COOKIE[$cookie_name] . "';";
-	echo $sql;
+	
+	$sql = "select Price, ProductName, SalesPrice, Category, o.Amount 
+		from orderContainProduct as o, userOrder, product 
+		where o.OrderID=userOrder.OrderID 
+		and product.ProductID=o.ProductID 
+		and UserID=" . $_COOKIE['login'] . ";";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
         // output data of each row
          while($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row["Product"] . "</td>";
-                echo "<td>" . $row["Class"] . "</td>";
+                echo "<td>" . $row["ProductName"] . "</td>";
+                echo "<td>" . $row["Category"] . "</td>";
+		if($row["SalesPrice"] != 0){
+		  echo "<td>" . $row["SalesPrice"] . "</td>";
+		}
+		else {
+		  echo "<td>" . $row["Price"] . "</td>";
+		}
 		echo "<td>" . $row["Amount"] . "</td>";
                 echo "</tr>";
         }
@@ -56,50 +66,6 @@
      <form action="/CS405/Cart/checkout.php">
       <input type="submit" value="Checkout" />
      </form>
-     
-
-
-     <p>Available accounts to sign into:</p>
-     <table>
-     <thead>
-       <th>Username</th>
-       <th>Password</th>
-     </thead>
-     <tbody>
-     <?php
-        include '../databaselogin.php';
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $db);
-
-        // Check connection
-        if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "select * from user;";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-        // output data of each row
-         while($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["Username"] . "</td>";
-                echo "<td>" . $row["Password"] . "</td>";
-                echo "</tr>";
-        }
-        } else {
-           echo "0 results";
-	}
-
-        $conn->close();
-     ?>
-     </tbody>
-     </table>
      <div id="footer"></div>
   </body>
 </html>
-
-
-
-

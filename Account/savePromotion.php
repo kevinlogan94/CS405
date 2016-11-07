@@ -1,9 +1,6 @@
 <?php
 $ProductID = $_POST['ProductID'];
-$SalePrice = $_POST['SalePrice'];
-
-echo $ProductID;
-echo $SalePrice;
+$SalesPrice = $_POST['SalesPrice'];
 
 include '../databaselogin.php';
 $conn = new mysqli($servername, $username, $password, $db);
@@ -13,15 +10,13 @@ if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "update Product
-	set (...) 
+$sql = "update product
+	set SalesPrice=" . $SalesPrice . "
         where ProductID='" . $ProductID ."';";
-echo $sql;
 
 // perform the query
-//$conn->query($sql);
+$conn->query($sql);
 
-
-//header('location:pendingorders.php');
+header('location:salesPromotion.php');
 
 ?>

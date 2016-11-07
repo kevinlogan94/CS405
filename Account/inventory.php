@@ -37,7 +37,7 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "select * from user;";
+        $sql = "select * from product;";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

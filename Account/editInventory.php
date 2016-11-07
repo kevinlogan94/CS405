@@ -34,8 +34,9 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
+	$ProductID = $_POST['ProductID'];
         //$sql = "select * from Product where ProductID=" . $_POST['ProductID'] . "';";
-	$sql = "select * from user;";
+	$sql = "select * from product where ProductID=" . $ProductID . ";";
         $result = $conn->query($sql);
 
 
@@ -47,7 +48,7 @@
 	   echo "<td>" . $row["ProductID"] . "</td>";
            echo "<td>" . $row["ProductName"] . "</td>";
 	   echo "<td>" . $row["Category"] . "</td>";
-	   echo "<td><input type='hidden' name='Amount' value=" . $row["Amount"] . " /></td>";
+	   echo "<td><input  name='Amount' value=" . $row["Amount"] . " /></td>";
            echo "<td><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Save' /></td>";
 	   echo "</tr>";
    	   echo "</form>";

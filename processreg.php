@@ -25,12 +25,13 @@ $class = $_POST['class'];
 //$phone = $_POST['phone'];
 
  //Get the userid for the insertion.
- $sql = "select UserID from user;";
+ $sql = "select max(UserID) from user;";
  $result = $conn->query($sql);
- $userid = 1;
- while($row = $result->fetch_assoc()) {
-	$userid++;
- }
+ $row = $result->fetch_assoc();
+ $userid = $row["max(UserID)"];
+ $userid++;
+ 
+
 
 //CODE FOR TESTING PURPOSES
 /* 

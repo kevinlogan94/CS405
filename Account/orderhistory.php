@@ -14,12 +14,12 @@
   <body>
      <div id="header"></div>
      <h1>Order History</h1>
-     <p>Replace with Order History</p>
-     <p>Available accounts to sign into:</p>
      <table>
      <thead>
-       <th>Username</th>
-       <th>Password</th>
+       <th>OrderID</th>
+       <th>OrderStatus</th>
+       <th>OrderTotal</th>
+       <th>OrderDate</th>
      </thead>
      <tbody>
      <?php
@@ -33,20 +33,22 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "select * from user;";
+        $sql = "select * from userOrder, orders where userOrder.OrderID=orders.OrderID and UserID=" . $_COOKIE['login'] . ";";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
         // output data of each row
          while($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row["Username"] . "</td>";
-                echo "<td>" . $row["Password"] . "</td>";
+                echo "<td>" . $row["OrderID"] . "</td>";
+                echo "<td>" . $row["OrderStatus"] . "</td>";
+		echo "<td>" . $row["OrderTotal"] . "</td>";
+                echo "<td>" . $row["OrderDate"] . "</td>";
                 echo "</tr>";
         }
         } else {
-           echo "0 results";
-	}
+           echo "You don't have any Orders";
+        }
 
         $conn->close();
      ?>

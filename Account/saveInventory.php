@@ -2,9 +2,6 @@
 $ProductID = $_POST['ProductID'];
 $Amount = $_POST['Amount'];
 
-echo $ProductID;
-echo $Amount;
-
 include '../databaselogin.php';
 $conn = new mysqli($servername, $username, $password, $db);
 
@@ -13,15 +10,15 @@ if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "update Product
-	set (...) 
-        where ProductID='" . $ProductID ."';";
+$sql = "update product
+	set Amount=" . $Amount . " 
+        where ProductID=" . $ProductID .";";
 echo $sql;
 
 // perform the query
-//$conn->query($sql);
+$conn->query($sql);
 
 
-//header('location:pendingorders.php');
+header('location:/CS405/Account/inventory.php');
 
 ?>

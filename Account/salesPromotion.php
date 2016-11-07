@@ -19,7 +19,9 @@
        <th>ID</th>
        <th>Product</th>
        <th>Category</th>
-       <th>Amount</th>
+       <th>Price</th>
+       <th>InvoicePrice</th>
+       <th>Sales Price</th>
        <th>Edit</th>
      </thead>
      <tbody>
@@ -35,7 +37,7 @@
         }
 
         //$sql = "select * from Product where ProductID=" . $_POST['ProductID'] . "';";
-	$sql = "select * from user;";
+	$sql = "select * from product;";
         $result = $conn->query($sql);
 
 
@@ -47,7 +49,9 @@
 	   echo "<td>" . $row["ProductID"] . "</td>";
            echo "<td>" . $row["ProductName"] . "</td>";
 	   echo "<td>" . $row["Category"] . "</td>";
-	   echo "<td><input type='hidden' name='SalePrice' value=" . $row["SalePrice"] . " /></td>";
+	   echo "<td>" . $row["Price"] . "</td>";
+ 	   echo "<td>" . $row["InvoicePrice"] . "</td>";
+	   echo "<td><input name='SalesPrice' value=" . $row["SalesPrice"] . " /></td>";
            echo "<td><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Save' /></td>";
 	   echo "</tr>";
    	   echo "</form>";

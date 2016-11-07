@@ -14,15 +14,6 @@
   <body>
      <div id="header"></div>
      <h1>Sales Statistics</h1>
-     <h2>Replace with sales statistics</h2>
-     <table>
-     <thead>
-       <th>UserID</th>
-       <th>First Name</th>
-       <th>Last Name</th>
-       <th>Class</th>
-     </thead>
-     <tbody>
      <?php
         include '../databaselogin.php';
 
@@ -34,27 +25,20 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "select * from user;";
+        $sql = "select max(OrderTotal) from orders where OrderStatus='Pending' or OrderStatus='Shipping';";
         $result = $conn->query($sql);
+	$data = $result->fetch_assoc();
+        echo "<p>Most revenue from a single order: $" . $data["max(OrderTotal)"] . "</p>";
 
-        if ($result->num_rows > 0) {
-        // output data of each row
-         while($row = $result->fetch_assoc()) {
-	   echo "<tr>";
-	   echo "<td>" . $row["UserID"] . "</td>";
-           echo "<td>" . $row["FirstName"] . "</td>";
-	   echo "<td>" . $row["LastName"] . "</td>";
-           echo "<td>" . $row["Class"] . "</td>";
-	   echo "</tr>";
-	}	
-	} else {
-           echo "0 results";
-	}
+	$sql = "select sum(OrderTotal) from orders where OrderStatus='Pending' or OrderStatus='Shipping';";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        echo "<p>Total revenue from all purchases: $" . $data["sum(OrderTotal)"] . "</p>"; 
 
-        $conn->close();
+        
+
+	$conn->close();
      ?>
-     </tbody>
-     </table>
      <div id="footer"></div>
   </body>
 </html>
