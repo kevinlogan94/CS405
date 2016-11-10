@@ -82,5 +82,6 @@
 ?>
    </tbody>
    </table>
+<div id="footer"></div>
 </body>
 </html>
