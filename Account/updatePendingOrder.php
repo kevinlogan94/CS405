@@ -42,15 +42,14 @@ $amount = $data['count(ProductName)'];
 //check order if the products are able to be sent.
 $sql = "select ProductName, product.ProductID, product.Amount, orderContainProduct.Amount as oAmount 
         from orderContainProduct, product 
-        where product.Amount > 0 and orderContainProduct.ProductID=product.ProductID and OrderID=" . $OrderID . "
-	group by orderContainProduct.Amount;";
+        where product.Amount > 0 and orderContainProduct.ProductID=product.ProductID and OrderID=" . $OrderID . ";";
 $result = $conn->query($sql);
 
 //compare what can be sent to how many are in the order.
 if ($result->num_rows == $amount) {
     //Set the order status to Shipping
-    $sql = "update orders set OrderStatus='Shipping'
-          where OrderID=" . $OrderID . ";";
+    $sql = "update orders set OrderStatus='Shipping', ShipDate=CurDate()
+            where OrderID=" . $OrderID . ";";
     //echo $sql;
 
    //perform the query
@@ -65,9 +64,9 @@ if ($result->num_rows == $amount) {
     }
 
 
-    //header('location:pendingorders.php');
+    header('location:pendingorders.php');
 } else {//Otherwise print what's not listed
-    $sql = "select ProductName 
+    $sql = "select product.ProductName 
         from orderContainProduct, product 
         where product.Amount < 1 and orderContainProduct.ProductID=product.ProductID and OrderID=" . $OrderID . ";";
     $result = $conn->query($sql);

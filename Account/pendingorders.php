@@ -18,6 +18,9 @@
      <thead>
        <th>OrderID</th>
        <th>Status</th>
+       <th>Customer</th>
+       <th>Purchased</th>
+       <th>Order Total</th>
        <th>Created</th>
        <th>Ship</th>
        
@@ -33,8 +36,30 @@
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
         }
+	
+	$productSql = "select product.ProductName, orders.OrderID 
+		       from product, orderContainProduct as o, orders
+		       where OrderStatus='Pending'
+		       and orders.OrderID=o.OrderID
+                       and product.ProductID=o.ProductID;";
 
-        $sql = "select * from orders where OrderStatus='Pending';";
+	$productResult = $conn->query($productSql);
+	$prodData = $productResult->fetch_assoc();
+/*
+        $sql = "select OrderID 
+		from orders, userOrder, user, product, orderContainProduct as o   
+		where OrderStatus='Pending'
+		and orders.OrderID=userOrder.OrderID
+		and userOrder.UserID=user.UserID
+		and orders.OrderID=o.OrderID
+		and product.ProductID=o.ProductID;";
+*/
+        $sql = "select * 
+                from orders, userOrder, user   
+                where OrderStatus='Pending'                
+		and orders.OrderID=userOrder.OrderID
+                and userOrder.UserID=user.UserID;";
+
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -43,6 +68,14 @@
                 echo "<tr>";
                 echo "<td>" . $row["OrderID"] . "</td>";
                 echo "<td>" . $row["OrderStatus"] . "</td>";
+		echo "<td>" . $row["FirstName"] . " " . $row["LastName"] . "</td>";
+		echo "<td>";
+		while($prodData["OrderID"] == $row["OrderID"]){
+			echo $prodData["ProductName"] . "<br>";
+			$prodData = $productResult->fetch_assoc();
+		}
+		echo "</td>";
+		echo "<td>" . $row["OrderTotal"] . "</td>";
 		echo "<td>" . $row["OrderDate"] . "</td>";
 		echo "<td><form action='updatePendingOrder.php' method='post'><input type='hidden' name='OrderID' value=" . $row["OrderID"] . " /><input type='submit' value='Ship' /></form></td>";
                 echo "</tr>";

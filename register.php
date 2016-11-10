@@ -117,10 +117,6 @@ Postconditions: Page transition to their new dashboard. Account information inpu
     <div class="rows">
        <p id="phone">
     </div>
-    <label id="shift">Address</label>
-    <hr>
-    address will go here
-    <br>
     <br>
     <input id="shift" type="submit" value="Submit">
   </fieldset>

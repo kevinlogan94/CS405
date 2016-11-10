@@ -19,7 +19,8 @@
        <th>OrderID</th>
        <th>OrderStatus</th>
        <th>OrderTotal</th>
-       <th>OrderDate</th>
+       <th>Created</th>
+       <th>Ship Date</th>
      </thead>
      <tbody>
      <?php
@@ -33,7 +34,10 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "select * from userOrder, orders where userOrder.OrderID=orders.OrderID and UserID=" . $_COOKIE['login'] . ";";
+        $sql = "select * from userOrder, orders 
+		where userOrder.OrderID=orders.OrderID
+		and OrderStatus <> 'UnCheckout' 
+		and UserID=" . $_COOKIE['login'] . ";";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -44,6 +48,7 @@
                 echo "<td>" . $row["OrderStatus"] . "</td>";
 		echo "<td>" . $row["OrderTotal"] . "</td>";
                 echo "<td>" . $row["OrderDate"] . "</td>";
+		echo "<td>" . $row["ShipDate"] . "</td>";
                 echo "</tr>";
         }
         } else {
