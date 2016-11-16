@@ -70,6 +70,10 @@ else if($row["Category"] == "Book"){
 ?>
 </tbody>
 </table>
+<form action="addToCart.php" method='post'>
+      <input type='hidden' name='ProductID' value=" <?php echo $row["ProductID"] ?> " />
+      <input type="submit" value="Add to Cart" />
+     </form>
 <div id="footer"></div>
   </body>
 </html>
