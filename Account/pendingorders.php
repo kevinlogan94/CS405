@@ -41,10 +41,12 @@
 		       from product, orderContainProduct as o, orders
 		       where OrderStatus='Pending'
 		       and orders.OrderID=o.OrderID
-                       and product.ProductID=o.ProductID;";
+                       and product.ProductID=o.ProductID
+		       order by orders.OrderID;";
 
 	$productResult = $conn->query($productSql);
 	$prodData = $productResult->fetch_assoc();
+
 /*
         $sql = "select OrderID 
 		from orders, userOrder, user, product, orderContainProduct as o   
@@ -90,6 +92,7 @@
      ?>
      </tbody>
      </table>
+
      <div id="footer"></div>
   </body>
 </html>
