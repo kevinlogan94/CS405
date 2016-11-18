@@ -18,12 +18,6 @@
        &nbsp; Search for Product: &nbsp;&nbsp; <input type="text" name="searchBar" size="30px" placeholder="Enter the Name or Category"><br>
        &nbsp; <input type="submit" value="Submit">
      </form>
-     <h2>Notes for checkout:</h2>
-     <p>All the really needs to be done for this is that you need to update the OrderStatus to OrderStatus='Pending'. You also need to update<br>
-	the OrderDate. You can easily do OrderDate=CurDate() in the query.
-     </p>
-
-
      <h1>Products</h1>
      <table>
       <thead>
