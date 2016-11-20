@@ -24,6 +24,7 @@
      <tbody>
      <?php
         include '../databaselogin.php';
+	$checkoutCtr = 0;
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $db);
@@ -58,6 +59,7 @@
                 echo "</tr>";
         }
         } else {
+	   $checkoutCtr++;
            echo "<br>Your Cart is empty<br>";
         }
 
@@ -65,9 +67,14 @@
      ?>
      </tbody>
      </table>
-     <form action="/CS405/Cart/checkout.php">
-      <input type="submit" value="Checkout" />
-     </form>
+     <?php
+	if($checkoutCtr == 0) {
+		echo "<form action='/CS405/Cart/checkout.php'>
+      		      <input type='submit' value='Checkout' />
+     		      </form>";
+	}
+
+?>
      <div id="footer"></div>
   </body>
 </html>

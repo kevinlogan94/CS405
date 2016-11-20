@@ -70,7 +70,7 @@
 		$OrderTotal = number_format($OrderTotal, 2, '.', '');
 	}
 	//Print out the order total
-        echo "<p>OrderTotal: $OrderTotal</p>";
+        echo "<p>OrderTotal: $$OrderTotal</p>";
 	
 	 $sql = "select Price, ProductName, SalesPrice, o.OrderID, Category, o.Amount 
                 from orderContainProduct as o, userOrder, product, orders 
@@ -101,6 +101,15 @@
            echo "<br>Your Cart is empty<br>";
         }
         
+	//Get First and Last Name for CardName.
+	$sql="select FirstName, LastName 
+	      from user
+	      where UserID=" . $_COOKIE['login'] . ";";
+	$result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+	$FirstName=$data["FirstName"];
+	$LastName=$data["LastName"]; 
+
 	$conn->close();
      ?>
      </tbody>
@@ -132,7 +141,11 @@
      <tbody>
        <tr>
 	 <td>123456789</td>
-	 <td>John M Doe</td>
+	 <td> 
+	<?php
+		echo "$FirstName $LastName";
+	 ?>
+	 </td>
 	 <td>11/11/2020</td>
        </tr>
      </tbody>
