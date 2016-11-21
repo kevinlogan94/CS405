@@ -52,6 +52,18 @@
         $data = $result->fetch_assoc();
         echo "<p>Most sold product: " . $data["ProductName"] . " <br>with amount: " . $data["Amount"] . "</p>";
 
+	?>
+        <hr/>
+        <form action='salesStatistics.php' method="get">
+          <input type='checkbox' name="week" <?php if(isset($_GET['week'])) {echo "CHECKED";}?>>Week<br>
+          <input type='checkbox' name="month" <?php if(isset($_GET['month'])) {echo "CHECKED";}?>>Month<br>
+          <input type='checkbox' name="year" <?php if(isset($_GET['year'])) {echo "CHECKED";}?>>Year<br>
+          <input type="submit" value="Filter"><br>
+        </form>
+        <?php
+	//Query to get results in past week.
+	//select * from orders where OrderDate between date_sub(now(),INTERVAL 1 week) and now();
+
 	//get all orders of status pending or shipping
 	$sql = "select * from orders 
                 where OrderStatus<>'UnCheckout';";
