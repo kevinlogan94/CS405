@@ -39,9 +39,7 @@ if ($conn->connect_error) {
 $sql = "select * 
 	from product
         where ProductID=" . $ProductID .";";
-echo $sql;
-echo "<br>";
-// echo $ProductID;
+//echo $sql;
 // perform the query
 echo "<br>";
         $result = $conn->query($sql);
