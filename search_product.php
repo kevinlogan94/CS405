@@ -37,23 +37,23 @@ if ($conn->connect_error) {
 
 $sql = "select * 
         from product
-        where ProductName=" . $searchText ."
-        or Category=" . $searchText .";";
+        where ProductName='" . $searchText ."'
+        or Category='" . $searchText ."';";
 echo $sql;
+
 echo "<br>";
 echo "<br>";
 $result = $conn->query($sql);
 
-$row = $result->fetch_assoc();
-
-if($row["Category"] == "Game"){
-   $imgsource = "Images/game.jpg";
-}
-else if($row["Category"] == "Book"){
-   $imgsource = "Images/book.jpg";
-}
 if ($result->num_rows > 0) {
-           $_SESSION['alert'] = "There ain't no matches";
+ 	while($row = $result->fetch_assoc()) {
+	   if($row["Category"] == "Game"){
+   		$imgsource = "Images/game.jpg";
+	   }
+	   else if($row["Category"] == "Book"){
+   		$imgsource = "Images/book.jpg";
+	   }
+
 	   echo "<tr>";
            echo "<td> <img src=" . $imgsource . "></img></td>";
            echo "<td>" . $row["ProductName"] . "</td>";
@@ -64,7 +64,11 @@ if ($result->num_rows > 0) {
            echo "<td>" . $row["ProdDescripiton"] . "</td>";
            // echo "<td><form action='editInventory.php' method='post'><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Edit' /></form></td>";
            echo "</tr>";
+	}
+} else {
+	echo "0 results";
 }
+
         $conn->close();
 ?>
 </tbody>
