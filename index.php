@@ -14,8 +14,8 @@
   <body>
      <div id="header"></div>
      <h1>Welcome to the Home page</h1>
-     <form action="demo_form.asp">
-       &nbsp; Search for Product: &nbsp;&nbsp; <input type="text" name="searchBar" size="30px" placeholder="Enter the Name or Category"><br>
+     <form action="search_product.php">
+       &nbsp; Search for Product: &nbsp;&nbsp; <input type="text" name="searchBar" size="45px" placeholder="Enter the Name or Category (Game or Book)"><br>
        &nbsp; <input type="submit" value="Submit">
      </form>
      <h2>Notes for checkout:</h2>
