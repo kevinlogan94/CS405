@@ -18,6 +18,7 @@
      <thead>
        <th>OrderID</th>
        <th>OrderStatus</th>
+       <th>Purchased(Amount)</th>
        <th>OrderTotal</th>
        <th>Created</th>
        <th>Ship Date</th>
@@ -34,6 +35,18 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
+	$productSql = "select product.ProductName, orders.OrderID, o.Amount 
+                       from product, orderContainProduct as o, userOrder, orders
+                       where OrderStatus<>'UnCheckout'
+                       and orders.OrderID=o.OrderID
+		       and orders.OrderID=userOrder.OrderID
+                       and product.ProductID=o.ProductID
+		       and UserID=" . $_COOKIE['login'] . "
+                       order by orders.OrderID;";
+
+        $productResult = $conn->query($productSql);
+        $prodData = $productResult->fetch_assoc();
+	
         $sql = "select * from userOrder, orders 
 		where userOrder.OrderID=orders.OrderID
 		and OrderStatus <> 'UnCheckout' 
@@ -46,6 +59,12 @@
                 echo "<tr>";
                 echo "<td>" . $row["OrderID"] . "</td>";
                 echo "<td>" . $row["OrderStatus"] . "</td>";
+		echo "<td>";
+                while($prodData["OrderID"] == $row["OrderID"]){
+                        echo $prodData["ProductName"] . " (" . $prodData["Amount"] . ") <br>";
+                        $prodData = $productResult->fetch_assoc();
+                }
+                echo "</td>";
 		echo "<td>" . $row["OrderTotal"] . "</td>";
                 echo "<td>" . $row["OrderDate"] . "</td>";
 		echo "<td>" . $row["ShipDate"] . "</td>";

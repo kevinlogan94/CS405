@@ -2,6 +2,11 @@
 table, td, th{
    border: 1px solid black;
 }
+
+table{
+	margin:20px;
+}
+
 ul {/*Set up the main header*/
     list-style-type: none;
     margin: 0;
@@ -148,6 +153,10 @@ img {
 
 a {
   cursor:pointer;
+}
+
+h1,h2,h3,p {
+  margin-bottom:20px;
 }
 
 body,

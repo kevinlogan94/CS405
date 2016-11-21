@@ -19,7 +19,7 @@
        <th>OrderID</th>
        <th>Status</th>
        <th>Customer</th>
-       <th>Purchased</th>
+       <th>Purchased(Amount)</th>
        <th>Order Total</th>
        <th>Created</th>
        <th>Ship</th>
@@ -37,14 +37,16 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 	
-	$productSql = "select product.ProductName, orders.OrderID 
+	$productSql = "select product.ProductName, orders.OrderID, o.Amount 
 		       from product, orderContainProduct as o, orders
 		       where OrderStatus='Pending'
 		       and orders.OrderID=o.OrderID
-                       and product.ProductID=o.ProductID;";
+                       and product.ProductID=o.ProductID
+		       order by orders.OrderID;";
 
 	$productResult = $conn->query($productSql);
 	$prodData = $productResult->fetch_assoc();
+
 /*
         $sql = "select OrderID 
 		from orders, userOrder, user, product, orderContainProduct as o   
@@ -71,7 +73,7 @@
 		echo "<td>" . $row["FirstName"] . " " . $row["LastName"] . "</td>";
 		echo "<td>";
 		while($prodData["OrderID"] == $row["OrderID"]){
-			echo $prodData["ProductName"] . "<br>";
+			echo $prodData["ProductName"] . " (" . $prodData["Amount"] . ") <br>";
 			$prodData = $productResult->fetch_assoc();
 		}
 		echo "</td>";
@@ -90,6 +92,7 @@
      ?>
      </tbody>
      </table>
+
      <div id="footer"></div>
   </body>
 </html>
