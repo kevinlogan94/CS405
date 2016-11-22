@@ -13,6 +13,7 @@
   </head>
   <body>
     <div id="header"></div>
+     <h1>Search Results</h1>
      <table>
      <thead>
        <th>Image</th>
@@ -22,6 +23,7 @@
        <th>Sales Price</th>
        <th>Amount</th>
        <th>Description</th>
+       <th>Add to Cart</th>
      </thead>
      <tbody>
 <?php
@@ -39,7 +41,6 @@ $sql = "select *
         from product
         where ProductName='" . $searchText ."'
         or Category='" . $searchText ."';";
-echo $sql;
 
 echo "<br>";
 echo "<br>";
@@ -62,7 +63,7 @@ if ($result->num_rows > 0) {
            echo "<td>" . $row["SalesPrice"] . "</td>";
            echo "<td>" . $row["Amount"] . "</td>";
            echo "<td>" . $row["ProdDescripiton"] . "</td>";
-           // echo "<td><form action='editInventory.php' method='post'><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Edit' /></form></td>";
+           echo "<td><form action='addToCart.php' method='post'><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Add to Cart' /></form></td>";
            echo "</tr>";
 	}
 } else {
@@ -73,10 +74,6 @@ if ($result->num_rows > 0) {
 ?>
 </tbody>
 </table>
-<form action="addToCart.php" method='post'>
-      <input type='hidden' name='ProductID' value=" <?php echo $row["ProductID"] ?> " />
-      <input type="submit" value="Add to Cart" />
-</form>
 <div id="footer"></div>
 </body>
 </html>
