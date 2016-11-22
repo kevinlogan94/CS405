@@ -39,6 +39,7 @@
 	$sumOrderTotal = number_format($data["sum(OrderTotal)"], 2, '.', '');
         echo "<p>Total revenue from all purchases: $" . $sumOrderTotal . "</p>"; 
 	
+
 	//Get most sold Product
 	$sql = "select ProductName, SUM(o.Amount) as Amount 
 		from orderContainProduct as o, product, orders 
@@ -62,11 +63,19 @@
         </form>
         <?php
 	//Query to get results in past week.
-	//select * from orders where OrderDate between date_sub(now(),INTERVAL 1 week) and now();
+	$time='year';
+	
+	if(isset($_GET['month'])){
+		$time='month';
+	}
+	else if(isset($_GET['week'])){
+		$time='week';
+	}
 
 	//get all orders of status pending or shipping
 	$sql = "select * from orders 
-                where OrderStatus<>'UnCheckout';";
+                where OrderStatus<>'UnCheckout'
+		and orders.OrderDate between date_sub(now(),INTERVAL 1 $time) and now();";
         $result = $conn->query($sql);
 
 	//Get products
@@ -75,13 +84,14 @@
                        where OrderStatus<>'UnCheckout'
                        and orders.OrderID=o.OrderID
                        and product.ProductID=o.ProductID
+		       and orders.OrderDate between date_sub(now(),INTERVAL 1 $time) and now()
                        order by orders.OrderID;";
 
         $productResult = $conn->query($productSql);
         $prodData = $productResult->fetch_assoc();
 
-
-	 echo "<h2>Orders</h2>
+	//Order History
+	 echo "<h2>Orders and product history within the last $time</h2>
                 <table>
                   <thead>
                     <th>OrderID</th>
@@ -113,9 +123,37 @@
         } else {
            echo "You don't have any Orders";
         }
-       
+      
+	//Product Purchase History 
 	 echo "</tbody>
               </table>";
+	 $sql = "select ProductName, SUM(o.Amount) as Amount 
+                from orderContainProduct as o, product, orders 
+                where product.ProductID=o.ProductID 
+                and orders.OrderID=o.OrderID 
+                and OrderStatus<>'UnCheckout'
+		and orders.OrderDate between date_sub(now(),INTERVAL 1 $time) and now() 
+                group by ProductName 
+                order by Amount;";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+        // output data of each row
+        echo "<table>
+              <thead>
+                <th>Product</th>
+                <th>Amount</th>
+              </thead>
+              <tbody>";
+         while($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row['ProductName'] . "</td>";
+                echo "<td>" . $row['Amount'] . "</td>";
+                echo "</tr>";
+         }
+        }
+        echo "</tbody>
+              </table>";
+
 
 	$conn->close();
      ?>
