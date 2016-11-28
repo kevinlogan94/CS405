@@ -24,6 +24,7 @@
        <th>Sales Price</th>
        <th>Amount</th>
        <th>Edit</th>
+       <th>Delete</th>
      </thead>
      <tbody>
      <?php
@@ -52,6 +53,7 @@
 	   echo "<td>" . $row["SalesPrice"] . "</td>";
 	   echo "<td>" . $row["Amount"] . "</td>";
            echo "<td><form action='editInventory.php' method='post'><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Edit' /></form></td>";
+	   echo "<td><form action='deleteInventory.php' method='post'><input type='hidden' name='ProductID' value=" . $row["ProductID"] . " /><input type='submit' value='Delete' /></form></td>";
 	   echo "</tr>";
 	}	
 	} else {
@@ -60,8 +62,38 @@
 
         $conn->close();
      ?>
+     <form action='addInventory.php' method='post'>
      </tbody>
      </table>
+     <h3>Add a Product</h3>
+     <table>
+      <thead>
+	<th>Product Name</th>
+	<th>Category</th>
+	<th>Price</th>
+	<th>Invoice Price</th>
+	<th>Description</th>
+	<th>Amount</th>
+	<th>Add</th>
+      </thead>
+      <tbody>
+        <tr>
+	 <td><input name="ProductName"/></td>
+	 <td>
+	  <select name="Category" selected="Book">
+           <option value="Book">Book</option>
+	   <option value="Game">Game</option>
+          </select>
+	 </td>
+	 <td><input type="number" name="Price"/></td>
+	 <td><input name="InvoicePrice"/></td>
+	 <td><input name="Description"/></td>
+	 <td><input type="number" name="Amount"/></td>
+	 <td><input type='submit' value='Add' /></td>
+        </tr>
+      </tbody>
+     </table>
+     </form>
      <div id="footer"></div>
   </body>
 </html>
