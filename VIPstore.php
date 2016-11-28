@@ -9,12 +9,13 @@
       $("#footer").load("footer.php"); 
     });
     </script> 
-    <title>CS405 Project</title>
+    <title>VIP Store</title>
   </head>
   <body>
      <div id="header"></div>
-     <h1>Welcome to the Home page</h1>
+     <h1> Welcome to the VIP Store</h1>
      <form action="search_product.php">
+       <input type='hidden' name='VIP' value="true" />
        &nbsp; Search for Product: &nbsp;&nbsp; <input type="text" name="searchBar" size="45px" placeholder="Enter the Name or Category (Game or Book)"><br>
        &nbsp; <input type="submit" value="Submit">
      </form>
@@ -35,7 +36,7 @@
                 die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "select * from product;";
+        $sql = "select * from product where VIP=1;";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -49,46 +50,11 @@
            echo "0 results";
         }
 
-    ?>
-     </tbody>
-     </table>
-
-     <h3>Available accounts to sign into:</h3>
-     <table>
-     <thead>
-       <th>Username</th>
-       <th>Password</th>
-     </thead>
-     <tbody>
-     <?php
-	$sql = "select * from user;";
-	$result = $conn->query($sql);
-
-	if ($result->num_rows > 0) {
-        // output data of each row
-   	 while($row = $result->fetch_assoc()) {
-        	echo "<tr>";
-		echo "<td>" . $row["Username"] . "</td>"; 
-	        echo "<td>" . $row["Password"] . "</td>";
-		echo "</tr>";
-    	}
-	} else {
- 	   echo "0 results";
-	}
-
         $conn->close();
+ //	include 'apicall.php' 
     ?>
      </tbody>
      </table>
-     <h3>VIP Extra Credit</h3>
-     <form action="VIPstore.php">
-       &nbsp;<input type="submit" value="Switch to VIP Store">
-     </form>
-     <h3>Partner Database Extra Credit</h3>
-     <form action="apicall.php">
-       &nbsp;<input type="submit" value="Update with Partner Database">
-     </form>
-
   <div id="footer"></div>
   </body>
 </html>
