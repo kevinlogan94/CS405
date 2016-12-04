@@ -58,6 +58,7 @@
      <thead>
        <th>Username</th>
        <th>Password</th>
+       <th>Class</th>
      </thead>
      <tbody>
      <?php
@@ -70,6 +71,7 @@
         	echo "<tr>";
 		echo "<td>" . $row["Username"] . "</td>"; 
 	        echo "<td>" . $row["Password"] . "</td>";
+		echo "<td>" . $row["Class"] . "</td>";
 		echo "</tr>";
     	}
 	} else {
