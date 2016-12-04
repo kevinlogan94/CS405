@@ -37,20 +37,10 @@ if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
 }
 
-//Check if we're doing a vip product search.
-if (isset($_GET['VIP'])) {
- $sql = "select * 
-        from product
-        where ProductName='" . $searchText ."'
-        or Category='" . $searchText ."'
-	and VIP=1;";
-
-} else {
  $sql = "select * 
         from product
         where ProductName='" . $searchText ."'
         or Category='" . $searchText ."';";
-}
 echo "<br>";
 $result = $conn->query($sql);
 

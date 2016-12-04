@@ -76,10 +76,6 @@
                 echo "<a href='/CS405/Account/pendingorders.php'>Pending Orders</a>, ";
                 echo "<a href='/CS405/Account/orderhistory.php'>Order History</a><br><br>";
 	}
-	else if($Class == "VIP"){
-		echo "<a href='/CS405/Account/VIP/index.php'>VIP Store</a>, ";
-		echo "<a href='/CS405/Account/orderhistory.php'>Order History</a><br><br> ";
-	}
 	else{
                 echo "<a href='/CS405/Account/orderhistory.php'>Order History</a><br><br> ";
         }

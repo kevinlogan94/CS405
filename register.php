@@ -89,7 +89,6 @@ Postconditions: Page transition to their new dashboard. Account information inpu
          <option value="Customer">Customer</option>
 	 <option value="Manager">Manager</option>
 	 <option value="Staff">Staff</option>
-	 <option value="VIP">VIP</option>
        </select>
     </div>
     <br>

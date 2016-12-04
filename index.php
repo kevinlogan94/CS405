@@ -80,10 +80,6 @@
     ?>
      </tbody>
      </table>
-     <h3>VIP Extra Credit</h3>
-     <form action="VIPstore.php">
-       &nbsp;<input type="submit" value="Switch to VIP Store">
-     </form>
      <h3>Partner Database Extra Credit</h3>
      <form action="apicall.php">
        &nbsp;<input type="submit" value="Update with Partner Database">
