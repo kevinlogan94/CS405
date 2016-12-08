@@ -14,6 +14,7 @@
   <body>
      <div id="header"></div>
      <h1>Sales Promotion</h1>
+     <h3>Note: If Sales Price is 0 then no sales price is applied to final price.</h3>
      <table>
      <thead>
        <th>ID</th>

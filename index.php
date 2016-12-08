@@ -82,11 +82,12 @@
     ?>
      </tbody>
      </table>
+     <!--
      <h3>Partner Database Extra Credit</h3>
      <form action="apicall.php">
        &nbsp;<input type="submit" value="Update with Partner Database">
      </form>
-
+     -->
   <div id="footer"></div>
   </body>
 </html>

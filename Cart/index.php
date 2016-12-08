@@ -14,6 +14,7 @@
   <body>
      <div id="header"></div>
      <h1>Cart</h1>
+     <h3>If Sales Price isn't 0, it replaces the price section for the product.</h3>
      <table>
      <thead>
        <th>Product</th>
