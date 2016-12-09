@@ -28,9 +28,8 @@
 	if(!isset($_COOKIE[$cookie_name])) {
  	   echo "Cookie named '" . $cookie_name . "' is not set!";
 	} else {
-        echo "Cookie '" . $cookie_name . "' is set!<br>";
         echo "<h1>" . "Welcome User: " . $_COOKIE[$cookie_name] . "</h1>";
-}
+	}
 	include '../databaselogin.php';
 
         // Create connection
