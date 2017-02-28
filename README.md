@@ -1,4 +1,4 @@
-#CS 405 Intro to Databases: Program
+#Webstore Database Project
 Kevin Logan
 Ryan Ludt
 Rohan Ganesan
